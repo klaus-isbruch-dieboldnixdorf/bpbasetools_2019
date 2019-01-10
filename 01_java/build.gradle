@@ -1,0 +1,21 @@
+apply plugin: 'java'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+archivesBaseName = "MyJavaApp"
+
+dependencies {
+	// https://mvnrepository.com/artifact/org.knowm.xchart/xchart
+	
+}
+
+
+jar {
+    manifest.attributes("Main-Class": "com.dieboldnixdorf.training.SimpleRealTime")
+    // add the external jar files to our own jar file, to make it standalone runnable
+	from configurations.compile.collect {item -> zipTree item}
+}
+

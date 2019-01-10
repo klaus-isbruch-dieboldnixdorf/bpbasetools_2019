@@ -1,0 +1,42 @@
+apply plugin: 'java'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+archivesBaseName = "MyJavaApp"
+
+dependencies {
+	// https://mvnrepository.com/artifact/org.knowm.xchart/xchart
+	compile group: 'org.knowm.xchart', name: 'xchart', version: '3.3.1'
+}
+
+
+
+jar {
+    manifest.attributes("Main-Class": "com.dieboldnixdorf.training.SimpleRealTime")
+    // add the external jar files to our own jar file, to make it standalone runnable
+	from configurations.compile.collect {item -> zipTree item}
+}
+
+
+task runJar(type: Exec, dependsOn: 'jar') {  //refers to a string named 'jar', resolved at the end of the configuration phase
+     group 'RUN'
+     description 'run the java application from the JAR file'
+     
+	// java.exe -jar ....jar Hello Jartask
+ 	executable 'java'
+	args '-jar', "$jar.archivePath", 'Hello Jartask'
+}
+
+
+task runClass(type: JavaExec, dependsOn: classes) { // dependsOn classes, because that is the subtask generating the class files
+     group 'RUN'
+     description 'run the java class (no jar required)'
+     
+	main 'com.dieboldnixdorf.training.SimpleRealTime'
+	classpath sourceSets.main.runtimeClasspath
+	args 'Hello runClass'
+}
+

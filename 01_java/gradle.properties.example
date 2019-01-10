@@ -1,0 +1,10 @@
+systemProp.http.proxyHost=proxy.wincor-nixdorf.com
+systemProp.http.proxyPort=81
+systemProp.http.nonProxyHosts=*.wincor-nixdorf.com|localhost|172.18.*|*.dieboldnixdorf.com
+systemProp.https.proxyHost=proxy.wincor-nixdorf.com
+systemProp.https.proxyPort=81
+systemProp.https.nonProxyHosts=*.wincor-nixdorf.com|localhost|172.18.*|*.dieboldnixdorf.com
+# example: org.gradle.java.home=C:/Java/jdk1.8.0_112/
+org.gradle.java.home=<yxy your JDK home directory>
+repoUser=<yxy your Nexus token>
+repoPW=<yxy your Nexus token>
